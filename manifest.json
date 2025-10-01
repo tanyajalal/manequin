@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "Manequin – Your Wellness Oasis",
+  "short_name": "Manequin",
+  "version": "1.0.6",
+  "description": "Discover your signature aesthetic & how to embody your dream self. Save tips to a moodboard.",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "48": "icon-48px.png",
+      "128": "icon-128px.png"
+    },
+    "default_title": "Open Manequin"
+  },
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.sephora.com/*",
+        "*://*.ulta.com/*",
+        "*://*.glossier.com/*",
+        "*://*.rarebeauty.com/*"
+      ],
+      "js": ["supabase.min.js", "content-script.js"],
+      "css": ["sidebar.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "48": "icon-48px.png",
+    "128": "icon-128px.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["sidebar.css", "icon-48px.png", "icon-128-header.png", "supabase.min.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
